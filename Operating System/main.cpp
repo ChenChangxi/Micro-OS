@@ -109,15 +109,17 @@ void change_dir(dir_root &present_root,string path) { //相对或者绝对路径
         present_root=root;
         return;
     }
-    queue<string> path_para=split(path,'/');
+    queue<string> path_para;
     if(path[0]=='/') {  //绝对路径
         path=path.substr(1,path.length()-1);   //要去掉第一个‘/’
+        path_para=split(path,'/');
         if(search_path(root, path_para)==nullptr) {
-            cout<<"没有这个文件夹";
+            cout<<"没有这个文件夹\n";
         } else present_root=search_path(root, path_para);
     } else {  //相对路径
+        path_para=split(path,'/');
         if(search_path(present_root, path_para)==nullptr) {
-            cout<<"没有这个文件夹";
+            cout<<"没有这个文件夹\n";
         } else present_root=search_path(present_root, path_para);
     }
 }
